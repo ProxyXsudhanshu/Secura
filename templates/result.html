@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Security Assessment Report</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+:root{--bg:#050914;--panel:rgba(11,19,35,.76);--line:rgba(110,180,255,.15);--cyan:#45e6ff;--violet:#9a7cff;--green:#42e6a4;--amber:#ffc857;--red:#ff5f6d;--text:#eef7ff;--muted:#8ea2b8}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Arial,sans-serif}body:before{content:"";position:fixed;inset:0;z-index:-2;background:radial-gradient(circle at 15% 0,rgba(69,230,255,.09),transparent 30%),radial-gradient(circle at 90% 20%,rgba(154,124,255,.1),transparent 28%)}body:after{content:"";position:fixed;inset:0;z-index:-1;background-image:linear-gradient(rgba(69,230,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(69,230,255,.045) 1px,transparent 1px);background-size:55px 55px;animation:grid 18s linear infinite}@keyframes grid{to{background-position:55px 55px}}.wrap{width:min(1160px,92%);margin:auto}.nav{height:72px;border-bottom:1px solid var(--line);background:rgba(4,9,20,.72);backdrop-filter:blur(18px);display:flex;align-items:center;animation:down .7s}.navin{display:flex;justify-content:space-between;align-items:center}.brand{font-weight:800;display:flex;align-items:center;gap:10px}.logo{width:36px;height:36px;border:1px solid rgba(69,230,255,.45);border-radius:11px;display:grid;place-items:center;color:var(--cyan)}.actions{display:flex;gap:10px}.btn{border:1px solid var(--line);background:rgba(69,230,255,.07);color:#fff;padding:10px 14px;border-radius:10px;cursor:pointer;font-weight:700;transition:.25s}.btn:hover{transform:translateY(-2px);border-color:rgba(69,230,255,.45);box-shadow:0 10px 25px rgba(0,0,0,.25)}main{padding:42px 0 80px}.top{display:flex;justify-content:space-between;align-items:end;margin-bottom:25px;animation:rise .7s}.eyebrow{color:var(--cyan);font-size:12px;letter-spacing:.12em}.top h1{font-size:40px;margin:8px 0}.target{color:var(--muted)}.status{color:var(--green);font-size:13px}.grid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}.panel{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:25px;box-shadow:0 20px 60px rgba(0,0,0,.22);opacity:0;transform:translateY(22px);transition:.65s}.panel.show{opacity:1;transform:none}.score{display:grid;grid-template-columns:250px 1fr;align-items:center;gap:25px}.ring{width:210px;height:210px;border-radius:50%;display:grid;place-items:center;margin:auto;background:conic-gradient(var(--cyan) 0deg,#132035 0deg);position:relative}.ring:before{content:"";position:absolute;inset:15px;border-radius:50%;background:#07101d}.ringin{position:relative;text-align:center}.ringin strong{display:block;font-size:44px}.ringin span{color:var(--muted);font-size:12px}.grade{font-size:30px;margin:10px 0;color:var(--cyan)}.muted{color:var(--muted)}.break{display:grid;gap:16px}.barrow{display:grid;grid-template-columns:150px 1fr 55px;gap:12px;align-items:center;font-size:13px}.bar{height:9px;border-radius:99px;background:#101b2e;overflow:hidden}.fill{height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--violet));border-radius:99px;transition:1.1s ease}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:18px 0}.stat{background:rgba(9,17,31,.72);border:1px solid var(--line);border-radius:16px;padding:18px}.stat b{font-size:28px}.stat span{display:block;color:var(--muted);font-size:12px;margin-top:5px}.wide{margin-top:18px}.wide h2{margin:0 0 20px;font-size:21px}.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}.item{border:1px solid var(--line);border-radius:15px;padding:18px;background:rgba(6,12,23,.45)}.item h3{margin:0 0 14px}.kv{display:grid;grid-template-columns:1fr auto;gap:11px;border-bottom:1px solid rgba(255,255,255,.05);padding:9px 0;font-size:13px}.kv:last-child{border:0}.pass{color:var(--green)}.warn{color:var(--amber)}.fail{color:var(--red)}table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;padding:13px 10px;border-bottom:1px solid rgba(255,255,255,.06)}th{color:#b7c7d8;font-size:12px}tr:hover td{background:rgba(69,230,255,.025)}.finding{border:1px solid var(--line);border-radius:14px;margin:10px 0;overflow:hidden}.fhead{padding:16px;display:flex;justify-content:space-between;cursor:pointer}.fbody{max-height:0;overflow:hidden;padding:0 16px;transition:.35s;color:var(--muted);line-height:1.65;font-size:13px}.finding.open .fbody{max-height:220px;padding:0 16px 17px}.sev{padding:4px 8px;border-radius:99px;font-size:10px}.med{background:rgba(255,200,87,.1);color:var(--amber)}.low{background:rgba(69,230,255,.1);color:var(--cyan)}.charts{display:grid;grid-template-columns:1fr 1fr;gap:18px}.chartbox{height:280px}.back{color:var(--cyan)}footer{border-top:1px solid var(--line);padding:30px 0;color:#71849b;font-size:12px}@keyframes down{from{transform:translateY(-100%)}to{transform:none}}@keyframes rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}@media(max-width:850px){.grid,.two,.charts{grid-template-columns:1fr}.score{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.top{align-items:start;gap:15px;flex-direction:column}.actions{width:100%;flex-wrap:wrap}.barrow{grid-template-columns:120px 1fr 45px}}@media(max-width:520px){.stats{grid-template-columns:1fr}.top h1{font-size:32px}.nav{height:auto;padding:14px 0}.brand{font-size:13px}}
+
+.theme-switcher{display:flex;gap:7px;align-items:center;margin-left:8px}.theme-btn{border:1px solid rgba(110,180,255,.22);background:rgba(10,18,34,.78);color:#b9c9da;padding:8px 11px;border-radius:9px;cursor:pointer;font-weight:800;font-size:12px;transition:.22s}.theme-btn:hover{transform:translateY(-1px);border-color:var(--cyan);color:#fff}.theme-btn.active{background:rgba(69,230,255,.16);border-color:rgba(69,230,255,.55);color:#fff;box-shadow:0 0 16px rgba(69,230,255,.12)}
+body.pink-theme{--bg:#16050f;--panel:rgba(45,7,31,.82);--line:rgba(255,77,184,.28);--cyan:#ff4db8;--violet:#ff8bd1;--green:#70f5c1;--amber:#ffd166;--red:#ff6b9d;--text:#fff5fb;--muted:#e3b6cf}
+body.pink-theme:before{background:radial-gradient(circle at 15% 0,rgba(255,20,147,.20),transparent 30%),radial-gradient(circle at 90% 20%,rgba(255,105,180,.18),transparent 28%),linear-gradient(180deg,#16050f,#0b0308)}
+body.pink-theme:after{background-image:linear-gradient(rgba(255,77,184,.065) 1px,transparent 1px),linear-gradient(90deg,rgba(255,77,184,.065) 1px,transparent 1px)}
+body.pink-theme .nav{background:rgba(36,2,24,.84);border-color:rgba(255,77,184,.35)}
+body.pink-theme .logo{border-color:rgba(255,77,184,.6);color:#ff4db8;box-shadow:0 0 22px rgba(255,20,147,.18)}
+body.pink-theme .btn{border-color:rgba(255,77,184,.55);background:linear-gradient(135deg,rgba(255,20,147,.25),rgba(255,105,180,.18));box-shadow:0 0 18px rgba(255,20,147,.12)}
+body.pink-theme .btn:hover{border-color:#ff4db8;box-shadow:0 0 28px rgba(255,20,147,.25)}
+body.pink-theme .theme-btn.active{background:linear-gradient(135deg,#ff1493,#ff4db8);border-color:#ff8bd1;color:#fff;box-shadow:0 0 18px rgba(255,20,147,.28)}
+body.pink-theme .panel{box-shadow:0 20px 60px rgba(255,20,147,.08)}
+@media(max-width:760px){.theme-switcher{margin-left:0}.actions{flex-wrap:wrap}.navin{gap:8px}.theme-btn{padding:7px 9px}}
+</style></head>
+<body>
+<header class="nav"><div class="wrap navin"><a class="brand back" href="/"><div class="logo">⌬</div>SECURA</a><div class="actions"><button class="btn" onclick="newScan()">New Scan</button><button class="btn" onclick="window.print()">Print Report</button></div><div class="theme-switcher" aria-label="Theme selector"><button class="theme-btn active" id="theme-dark" type="button">Dark</button><button class="theme-btn" id="theme-pink" type="button">💗 Pink</button></div></div></header>
+<main class="wrap">
+<div class="top"><div><div class="eyebrow">SECURITY ASSESSMENT REPORT</div><h1>Security Assessment Report</h1><div class="target">Target: <strong id="target">Scanning...</strong></div></div><div class="status" id="status-text">● Scanning in progress...</div></div>
+
+<div class="grid">
+<section class="panel show"><div class="score"><div class="ring" id="ring"><div class="ringin"><strong id="score">0</strong><span>/ 100</span></div></div><div><div class="eyebrow">OVERALL SECURITY SCORE</div><div class="grade" id="grade">—</div><p class="muted">Weighted assessment across SSL/TLS, security headers, port exposure and DNS email authentication.</p><div class="muted" style="font-size:12px">Strong 90–100 · Good 75–89 · Needs Improvement 50–74 · Critical &lt;50</div></div></div></section>
+<section class="panel show"><div class="eyebrow">SCORE BREAKDOWN</div><h2>Assessment Categories</h2><div class="break">
+<div class="barrow"><span>SSL / TLS</span><div class="bar"><div class="fill" id="fill-ssl"></div></div><b id="score-ssl">0/30</b></div>
+<div class="barrow"><span>Security Headers</span><div class="bar"><div class="fill" id="fill-headers"></div></div><b id="score-headers">0/30</b></div>
+<div class="barrow"><span>Port Exposure</span><div class="bar"><div class="fill" id="fill-ports"></div></div><b id="score-ports">0/20</b></div>
+<div class="barrow"><span>DNS Auth</span><div class="bar"><div class="fill" id="fill-dns"></div></div><b id="score-dns">0/20</b></div>
+</div></section>
+</div>
+
+<section class="panel wide show"><h2>SSL / TLS</h2><div class="item"><h3>Certificate & Transport Security</h3><div class="kv"><span>Certificate Status</span><b id="ssl-status">-</b></div><div class="kv"><span>HTTPS</span><b id="https-status">-</b></div><div class="kv"><span>Certificate Expiry</span><b id="ssl-expiry">-</b></div><div class="kv"><span>Issuer</span><b id="ssl-issuer">-</b></div></div></section>
+
+<section class="panel wide show"><h2>Security Headers</h2><table id="headers-table"><thead><tr><th>Header</th><th>Status</th><th>Value</th></tr></thead><tbody><tr><td colspan="3">Loading headers...</td></tr></tbody></table></section>
+
+<section class="panel wide show"><h2>Port Exposure</h2><div class="kv"><span>IP Address</span><b id="target-ip">-</b></div><div class="kv"><span>Open Ports</span><b id="open-ports">-</b></div></section>
+
+<section class="panel wide show"><h2>DNS Authentication</h2><div class="item"><div class="kv"><span>SPF</span><b id="spf-status">-</b></div><div class="kv"><span>DMARC</span><b id="dmarc-status">-</b></div></div></section>
+
+<section class="panel wide show"><h2>Visualization</h2><div class="charts"><div class="chartbox"><canvas id="scoreChart"></canvas></div><div class="chartbox"><canvas id="categoryChart"></canvas></div></div></section>
+</main>
+<footer><div class="wrap">SECURA · Live Backend Security Assessment.</div></footer>
+
+<script>
+const params = new URLSearchParams(location.search);
+const target = params.get('url') || 'example.com';
+document.getElementById('target').textContent = target;
+
+function newScan(){ location.href = '/'; }
+
+async function runAssessment() {
+  try {
+    const response = await fetch(`/api/scan?domain=${encodeURIComponent(target)}`);
+    const data = await response.json();
+
+    if (data.error) {
+      document.getElementById('status-text').textContent = "● Scan Failed: " + data.error;
+      document.getElementById('status-text').style.color = "var(--red)";
+      return;
+    }
+
+    document.getElementById('status-text').textContent = "● Scan Completed";
+
+    // Scores & Grade
+    const scores = data.scores;
+    document.getElementById('score').textContent = scores.total;
+    document.getElementById('grade').textContent = scores.grade;
+    document.getElementById('ring').style.background = `conic-gradient(var(--cyan) ${scores.total * 3.6}deg, #132035 0deg)`;
+
+    // Breakdown
+    document.getElementById('fill-ssl').style.width = `${(scores.ssl_tls / 30) * 100}%`;
+    document.getElementById('score-ssl').textContent = `${scores.ssl_tls}/30`;
+    document.getElementById('fill-headers').style.width = `${(scores.headers / 30) * 100}%`;
+    document.getElementById('score-headers').textContent = `${scores.headers}/30`;
+    document.getElementById('fill-ports').style.width = `${(scores.ports / 20) * 100}%`;
+    document.getElementById('score-ports').textContent = `${scores.ports}/20`;
+    document.getElementById('fill-dns').style.width = `${(scores.dns / 20) * 100}%`;
+    document.getElementById('score-dns').textContent = `${scores.dns}/20`;
+
+    // SSL Info
+    document.getElementById('ssl-status').textContent = data.ssl.valid ? "Valid" : "Invalid / None";
+    document.getElementById('ssl-status').className = data.ssl.valid ? "pass" : "fail";
+    document.getElementById('https-status').textContent = data.https ? "Enabled" : "Disabled";
+    document.getElementById('https-status').className = data.https ? "pass" : "fail";
+    document.getElementById('ssl-expiry').textContent = data.ssl.expiry || "N/A";
+    document.getElementById('ssl-issuer').textContent = data.ssl.issuer || "N/A";
+
+    // Headers Table
+    const tbody = document.querySelector('#headers-table tbody');
+    tbody.innerHTML = '';
+    for (const [header, info] of Object.entries(data.headers)) {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td>${header}</td><td class="${info.present ? 'pass' : 'fail'}">${info.present ? '✓ PASS' : '✗ MISSING'}</td><td>${info.value || 'None'}</td>`;
+      tbody.appendChild(tr);
+    }
+
+    // Ports & DNS
+    document.getElementById('target-ip').textContent = data.ip;
+    document.getElementById('open-ports').textContent = data.open_ports.length ? data.open_ports.join(', ') : 'None (Secure)';
+    document.getElementById('spf-status').textContent = data.spf.enabled ? "PASS (" + data.spf.record + ")" : "MISSING";
+    document.getElementById('spf-status').className = data.spf.enabled ? "pass" : "warn";
+    document.getElementById('dmarc-status').textContent = data.dmarc.enabled ? "PASS (" + data.dmarc.record + ")" : "MISSING";
+    document.getElementById('dmarc-status').className = data.dmarc.enabled ? "pass" : "warn";
+
+    // Charts
+    new Chart(document.getElementById('scoreChart'), {
+      type: 'doughnut',
+      data: { labels: ['Score', 'Deficit'], datasets: [{ data: [scores.total, 100 - scores.total], borderWidth: 0, backgroundColor: ['#45e6ff', '#132035'] }] },
+      options: { responsive: true, maintainAspectRatio: false }
+    });
+
+    new Chart(document.getElementById('categoryChart'), {
+      type: 'bar',
+      data: {
+        labels: ['SSL/TLS', 'Headers', 'Ports', 'DNS Auth'],
+        datasets: [{ label: 'Score', data: [scores.ssl_tls, scores.headers, scores.ports, scores.dns], backgroundColor: ['#45e6ff', '#9a7cff', '#45e6ff', '#9a7cff'], borderRadius: 8 }]
+      },
+      options: { responsive: true, maintainAspectRatio: false, scales: { y: { beginAtZero: true, max: 30 } } }
+    });
+
+  } catch (err) {
+    document.getElementById('status-text').textContent = "● Error connecting to server";
+    document.getElementById('status-text').style.color = "var(--red)";
+  }
+}
+
+window.addEventListener('DOMContentLoaded', runAssessment);
+</script>
+
+<script>
+(function(){
+  const dark=document.getElementById('theme-dark'), pink=document.getElementById('theme-pink');
+  if(!dark||!pink)return;
+  const saved=localStorage.getItem('secura-theme')||'dark';
+  function setTheme(t){
+    document.body.classList.toggle('pink-theme',t==='pink');
+    dark.classList.toggle('active',t==='dark');
+    pink.classList.toggle('active',t==='pink');
+    localStorage.setItem('secura-theme',t);
+  }
+  dark.addEventListener('click',()=>setTheme(t='dark'));
+  pink.addEventListener('click',()=>setTheme(t='pink'));
+  setTheme(saved);
+})();
+</script>
+</body>
+</html>
