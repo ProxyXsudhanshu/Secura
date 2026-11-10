@@ -34,37 +34,34 @@ section{padding:100px 0}.sectionhead{text-align:center;margin-bottom:48px}.secti
 @media(max-width:520px){.interface-strip{grid-template-columns:1fr}.planet-stage{height:330px}.interface-card{display:none}}
 @media(prefers-reduced-motion:reduce){.space-nebula,.interface-card{animation:none}}
 
-body.pink-theme{
-  --pink:#ff1493; --pink-2:#ff4db8; --pink-soft:rgba(255,20,147,.16);
-  --ink:#12000d; --paper:#fff7fc;
-}
-body.pink-theme #space-bg{opacity:.95; filter:saturate(1.35) hue-rotate(295deg);}
-body.pink-theme .space-nebula.a{background:radial-gradient(circle,var(--pink),transparent 68%);}
-body.pink-theme .space-nebula.b{background:radial-gradient(circle,var(--pink-2),transparent 70%);}
-body.pink-theme .space-nebula.c{background:radial-gradient(circle,#ff85d0,transparent 72%);}
-body.pink-theme .nav{background:rgba(34,0,24,.82); border-color:rgba(255,77,184,.32);}
-body.pink-theme .brand,.pink-theme .links a,.pink-theme .eyebrow,.pink-theme .hero h1,.pink-theme .hero p,.pink-theme .section-title,.pink-theme .interface-card h3,.pink-theme .interface-card p,.pink-theme footer{color:#fff7fc;}
-body.pink-theme .btn{background:linear-gradient(135deg,#ff1493,#ff4db8); box-shadow:0 0 28px rgba(255,20,147,.35);}
-body.pink-theme .hero{background:radial-gradient(circle at 70% 35%,rgba(255,20,147,.2),transparent 35%);}
-body.pink-theme .hero h1 em{color:#ff63bd;}
-body.pink-theme .hero-pill,.pink-theme .interface-card,.pink-theme .status-card{background:rgba(42,0,30,.72);border-color:rgba(255,77,184,.28);box-shadow:0 14px 45px rgba(255,20,147,.12);}
-body.pink-theme .pill-dot,.pink-theme .live-dot{background:#ff1493;box-shadow:0 0 12px #ff1493;}
-body.pink-theme .interface-card strong,.pink-theme .status-value{color:#ff63bd;}
-body.pink-theme .interface-section{background:linear-gradient(180deg,rgba(255,20,147,.05),rgba(255,20,147,.12));}
-body.pink-theme .scanner-card,.pink-theme .how-card,.pink-theme .check-card{border-color:rgba(255,77,184,.25);}
-body.pink-theme .logo{background:linear-gradient(135deg,#ff1493,#ff78c9);color:#fff;box-shadow:0 0 24px rgba(255,20,147,.35);}
-body.pink-theme a:hover{color:#ff8ad1;}
-.theme-switcher{display:flex;gap:8px;align-items:center;margin-left:10px;}
-.theme-btn{border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);color:inherit;border-radius:999px;padding:8px 11px;cursor:pointer;font:inherit;font-size:12px;}
-.theme-btn:hover{border-color:rgba(255,20,147,.65);}
-.theme-btn.active{background:#ff1493;color:white;border-color:#ff1493;box-shadow:0 0 18px rgba(255,20,147,.3);}
-@media(max-width:760px){.theme-switcher{margin-left:0}.theme-btn{padding:7px 9px}.links{display:none}}
+body.pink-theme{--bg:#16050f;--panel:rgba(45,7,31,.82);--line:rgba(255,77,184,.28);--cyan:#ff4db8;--violet:#ff8bd1;--green:#70f5c1;--amber:#ffd166;--red:#ff6b9d;--text:#fff5fb;--muted:#e3b6cf}
+body.pink-theme:before{background:radial-gradient(circle at 15% 0,rgba(255,20,147,.20),transparent 30%),radial-gradient(circle at 90% 20%,rgba(255,105,180,.18),transparent 28%),linear-gradient(180deg,#16050f,#0b0308)}
+body.pink-theme:after{background-image:linear-gradient(rgba(255,77,184,.065) 1px,transparent 1px),linear-gradient(90deg,rgba(255,77,184,.065) 1px,transparent 1px)}
+body.pink-theme .nav{background:rgba(36,2,24,.84);border-color:rgba(255,77,184,.35)}
+body.pink-theme .logo{border-color:rgba(255,77,184,.6);color:#ff4db8;box-shadow:0 0 22px rgba(255,20,147,.18)}
+body.pink-theme .btn{border-color:rgba(255,77,184,.55);background:linear-gradient(135deg,rgba(255,20,147,.25),rgba(255,105,180,.18));box-shadow:0 0 18px rgba(255,20,147,.12)}
+body.pink-theme .btn:hover{border-color:#ff4db8;box-shadow:0 0 28px rgba(255,20,147,.25)}
+
+@media(max-width:760px){.theme-switcher{margin-left:0}.links{display:none}}
+.theme-btn:hover{transform:translateY(-1px);border-color:var(--cyan);color:#fff}.theme-btn.active{background:rgba(69,230,255,.16);border-color:rgba(69,230,255,.55);color:#fff;box-shadow:0 0 16px rgba(69,230,255,.12)}
+
+.theme-switcher{display:flex;align-items:center;justify-content:center;gap:6px;flex:0 0 auto;margin-left:8px}
+.theme-name{font-size:10px;font-weight:900;letter-spacing:.08em;color:var(--muted);min-width:31px;text-align:right}
+.theme-toggle{position:relative;width:50px;height:28px;padding:0;border:1px solid rgba(110,180,255,.35);border-radius:999px;background:#17243a;color:#9eb4c8;box-shadow:inset 0 0 10px rgba(0,0,0,.22);cursor:pointer;transition:background .25s,border-color .25s;touch-action:manipulation;-webkit-appearance:none;appearance:none}
+.toggle-knob{position:absolute;left:3px;top:3px;width:20px;height:20px;border-radius:50%;display:grid;place-items:center;background:#253955;color:#a8bdd0;font-size:12px;line-height:1;box-shadow:0 2px 8px rgba(0,0,0,.35);transition:left .25s,background .25s,color .25s,box-shadow .25s}
+.theme-toggle.pink{background:rgba(255,20,147,.18);border-color:rgba(255,77,184,.65)}
+.theme-toggle.pink .toggle-knob{left:26px;background:#ff4db8;color:#fff;box-shadow:0 0 15px rgba(255,77,184,.5)}
+body.pink-theme .theme-name{color:#ff77c8}
+body.pink-theme .btn:active{background:linear-gradient(135deg,#ff1493,#ff4db8)}
+@media(max-width:760px){.theme-switcher{margin-left:0}.navin{gap:8px}.theme-name{display:none}.theme-toggle{width:48px;height:27px}.toggle-knob{width:19px;height:19px;left:3px;top:3px}.theme-toggle.pink .toggle-knob{left:25px}}
+@media(max-width:420px){.theme-toggle{width:44px}.theme-toggle.pink .toggle-knob{left:21px}.toggle-knob{width:18px;height:18px;font-size:10px}}
+
 </style>
 </head>
 <body>
 <canvas id="space-bg" aria-hidden="true"></canvas>
 <div class="space-nebula a" aria-hidden="true"></div><div class="space-nebula b" aria-hidden="true"></div><div class="space-nebula c" aria-hidden="true"></div>
-<header class="nav"><div class="wrap navin"><a class="brand" href="#"><div class="logo">⌬</div>SECURA</a><nav class="links"><a href="#">Home</a><a href="#how">How It Works</a><a href="#checks">Security Checks</a><a href="#about">About</a></nav><a class="btn" href="#scanner">Start Scan</a><div class="theme-switcher" aria-label="Theme selector"><button class="theme-btn active" id="theme-dark" type="button">Dark</button><button class="theme-btn" id="theme-pink" type="button">💗 Pink</button></div></div></header>
+<header class="nav"><div class="wrap navin"><a class="brand" href="#"><div class="logo">⌬</div>SECURA</a><nav class="links"><a href="#">Home</a><a href="#how">How It Works</a><a href="#checks">Security Checks</a><a href="#about">About</a></nav><a class="btn" href="#scanner">Start Scan</a><div class="theme-switcher" aria-label="Theme selector"><span class="theme-name" id="theme-name">DARK</span><button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch between Dark and Pink theme" aria-pressed="false"><span class="toggle-knob">◐</span></button></div></div></header>
 
 <main>
 <section class="wrap hero" id="scanner">
@@ -159,15 +156,20 @@ btn.addEventListener('click',()=>{
 
 <script>
 (function(){
-  var dark=document.getElementById('theme-dark'), pink=document.getElementById('theme-pink');
-  var saved=localStorage.getItem('secura-theme') || 'dark';
-  function setTheme(t){
-    document.body.classList.toggle('pink-theme',t==='pink');
-    dark.classList.toggle('active',t==='dark'); pink.classList.toggle('active',t==='pink');
-    localStorage.setItem('secura-theme',t);
+  const toggle=document.getElementById('theme-toggle');
+  const name=document.getElementById('theme-name');
+  if(!toggle||!name)return;
+  let saved='dark';
+  try { saved=localStorage.getItem('secura-theme')||'dark'; } catch(e) {}
+  function setTheme(theme){
+    const pink=theme==='pink';
+    document.body.classList.toggle('pink-theme',pink);
+    toggle.classList.toggle('pink',pink);
+    toggle.setAttribute('aria-pressed',String(pink));
+    name.textContent=pink?'PINK':'DARK';
+    try { localStorage.setItem('secura-theme',pink?'pink':'dark'); } catch(e) {}
   }
-  dark.addEventListener('click',function(){setTheme('dark')});
-  pink.addEventListener('click',function(){setTheme('pink')});
+  toggle.addEventListener('click',function(){setTheme(toggle.classList.contains('pink')?'dark':'pink')},{passive:true});
   setTheme(saved);
 })();
 </script>
